@@ -5,7 +5,7 @@
         <div class="flex text-gray-100 pt-10">
             <div class="m-auto pt-4 pb-16 sm:m-auto w-4/5 block text-center">
                 <h1 class="sm:text-white text-5xl uppercase font-bold text-shadow-md pb-14">
-                    Do you want to become a developer?
+                    Create a unique and beautiful blog easily.
                 </h1>
                 <a 
                     href="/blog"
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
+    {{-- <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
         <div>
             <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" width="700" alt="">
         </div>
@@ -40,9 +40,9 @@
                 Find Out More
             </a>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="text-center p-15 bg-black text-white">
+    {{-- <div class="text-center p-15 bg-black text-white">
         <h2 class="text-2xl pb-5 text-l"> 
             I'm an expert in...
         </h2>
@@ -59,7 +59,7 @@
         <span class="font-extrabold block text-4xl py-1">
             Backend Development
         </span>
-    </div>
+    </div> --}}
 
     <div class="text-center py-15">
         <span class="uppercase text-s text-gray-400">
@@ -70,15 +70,68 @@
             Recent Posts
         </h2>
 
-        <p class="m-auto w-4/5 text-gray-500">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque exercitationem saepe enim veritatis, eos temporibus quaerat facere consectetur qui.
+        <p class="m-auto w-4/5 text-gray-500 text-xl">
+            Check out the recently posted articles on this Blog!
         </p>
     </div>
 
     <div class="sm:grid grid-cols-2 w-4/5 m-auto">
-        <div class="flex bg-yellow-700 text-gray-100 pt-10">
-            <div class="m-auto pt-4 pb-16 sm:m-auto w-4/5 block">
-                <span class="uppercase text-xs">
+        {{-- <div class="flex bg-yellow-700 text-gray-100 pt-10"> --}}
+            {{-- <div class="m-auto pt-4 pb-16 sm:m-auto w-4/5 block"> --}}
+                @foreach ($posts as $post)
+                    <div class="w-4/5 mx-auto py-15 px-7 border-b dark:bg-white border dark:border-gray-200 rounded-lg shadow bg-orange-400 border-white-700 mb-4">
+                        {{-- <div>
+                            <img src="{{ asset('images/' . $post->image_path) }}" alt="">
+                        </div> --}}
+                        <div>
+                            <h2 class="text-gray-700 font-bold text-5xl pb-4 truncate">
+                                {{ $post->title }}
+                            </h2>
+
+                            <span class="text-gray-500">
+                                By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
+                            </span>
+
+                            {{-- <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
+                                {{  $post->description  }}
+                            </p> --}}
+                            {{-- {!!  $post->description  !!} --}}
+                            <br>
+                            <br>
+                            <br>
+                            <a href="/blog/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                                Read
+                            </a>
+
+                            @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id) {{--check if user is the one who created this blog and add edit and delete button --}}
+                                <span class="float-right">
+                                    <a 
+                                        href="/blog/{{ $post->slug }}/edit"
+                                        class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
+                                        Edit
+                                    </a>
+                                </span>
+
+                                <span class="float-right">
+                                    <form 
+                                        action="/blog/{{ $post->slug }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+
+                                        <button
+                                            class="text-red-600 pr-3"
+                                            type="submit">
+                                            Delete
+                                        </button>
+
+                                    </form>
+                                </span>
+                            @endif
+                        </div>
+                    </div>    
+                @endforeach
+                {{-- <span class="uppercase text-xs">
                     PHP
                 </span>
 
@@ -90,11 +143,11 @@
                     href=""
                     class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl">
                     Find Out More
-                </a>
-            </div>
-        </div>
-        <div>
-            <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" alt="">
-        </div>
+                </a> --}}
+            {{-- </div> --}}
+        {{-- </div> --}}
+        {{-- <div> --}}
+            {{-- <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" alt=""> --}}
+        {{-- </div> --}}
     </div>
 @endsection

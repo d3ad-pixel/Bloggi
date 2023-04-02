@@ -49,18 +49,19 @@ class PostsController extends Controller
         // ]);
         $request->validate([
           'title' => 'required',
-          'data' => 'required'  
+          'data' => 'required',
+          'image' => 'required|mimes:jpg,png,jpeg|max:5048'  
         ]);
 
-        // $newImageName = uniqid() . '-' . $request->title . '.' . $request->image->extension();
+        $newImageName = uniqid() . '-' . $request->title . '.' . $request->image->extension();
 
-        // $request->image->move(public_path('images'), $newImageName);
+        $request->image->move(public_path('images'), $newImageName);
 
         Post::create([
             'title' => $request->input('title'),
             'description' => $request->input('data'),
             'slug' => SlugService::createSlug(Post::class, 'slug', "title"),
-            'image_path' => 'none',//$newImageName,
+            'image_path' => $newImageName,
             'user_id' => auth()->user()->id
         ]);
 

@@ -36,6 +36,12 @@
                 <p class="text-gray-900 font-bold text-xl mb-2 truncate">
                     {{ $post->title }}
                 </p>
+                <div class="w-auto inline-block ">
+                    <p class="bg-blue-600 w-auto inline-block mb-3 text-white font-bold py-1 px-3 rounded-full">
+                        #{{ $post->category }}
+                    </p>
+                </div>
+                
                 <div class="mb-3">
                     <span class="text-gray-500 mb-3 text-s mr-6 w-full truncate">
                         By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
@@ -80,6 +86,9 @@
             </div>
         </div>    
     @endforeach
+</div>
+<div class=" w-4/5 mx-auto mt-10">
+    {{ $posts->links() }}
 </div>
 
 @endsection

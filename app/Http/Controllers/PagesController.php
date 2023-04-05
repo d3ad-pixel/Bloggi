@@ -11,6 +11,6 @@ class PagesController extends Controller
     public function index()
     {
         return view('index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
+            ->with('posts', Post::orderBy('updated_at', 'DESC')->limit(4)->get());
     }
 }

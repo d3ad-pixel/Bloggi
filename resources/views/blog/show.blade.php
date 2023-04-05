@@ -16,9 +16,6 @@
     <div class="mt-10">
         {!! $post->description !!}
     </div>
-    <div>
-        <img src="{{ asset('images/' . $post->image_path) }}" alt="">
-    </div>
 </div>
 
 @endsection 

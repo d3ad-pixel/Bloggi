@@ -22,42 +22,6 @@
 @endif
 
 <div class="w-4/5 m-auto pt-20">
-    {{-- <form 
-        action="/blog"
-        method="POST"
-        enctype="multipart/form-data">
-        @csrf
-
-        <input 
-            type="text"
-            name="title"
-            placeholder="Title..."
-            class="bg-transparent block border-b-2 w-full h-20 text-6xl outline-none">
-
-        <textarea 
-            name="description"
-            placeholder="Description..."
-            class="py-20 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea>
-
-        <div class="bg-grey-lighter pt-15">
-            <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
-                <span class="mt-2 text-base leading-normal">
-                    Select a file
-                </span>
-                <input 
-                    type="file"
-                    name="image"
-                    class="hidden">
-            </label>
-        </div>
-
-        <button    
-            type="submit"
-            class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-            Submit Post
-        </button>
-    </form> --}}
-    {{-- <x-forms.tinymce-editor/> --}}
     <form action="/blog" method="post" enctype="multipart/form-data">
         @csrf
         <input 
@@ -78,6 +42,32 @@
                     class="hidden">
             </label>
         </div>
+
+        
+
+        <label for="category">Choose a Category:</label>
+        <select id="category" name="category">
+            <option value="personal-development">Personal Development</option>
+            <option value="lifestyle">Lifestyle</option>
+            <option value="technology">Technology</option>
+            <option value="business">Business</option>
+            <option value="finance">Finance</option>
+            <option value="health-and-fitness">Health and Fitness</option>
+            <option value="education">Education</option>
+            <option value="politics">Politics</option>
+            <option value="news-and-current-events">News and Current Events</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="sports">Sports</option>
+            <option value="travel">Travel</option>
+            <option value="diy-and-home-improvement">DIY and Home Improvement</option>
+            <option value="parenting">Parenting</option>
+            <option value="fashion">Fashion</option>
+            <option value="beauty">Beauty</option>
+            <option value="food-and-cooking">Food and Cooking</option>
+            <option value="marketing">Marketing</option>
+            <option value="writing-and-blogging">Writing and Blogging</option>
+            <option value="social-media-and-networking">Social Media and Networking</option>
+        </select>
 
         <button 
             type="submit"

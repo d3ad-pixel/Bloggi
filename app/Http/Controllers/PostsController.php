@@ -20,8 +20,11 @@ class PostsController extends Controller
      */
     public function index()
     {
+        //$posts = Post::latest()->paginate(6);
+
         return view('blog.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
+            ->with('posts', Post::orderBy('updated_at', 'DESC')->paginate(6));
+            //Post::orderBy('updated_at', 'DESC')->get()
     }
 
     /**
@@ -62,6 +65,7 @@ class PostsController extends Controller
             'description' => $request->input('data'),
             'slug' => SlugService::createSlug(Post::class, 'slug', "title"),
             'image_path' => $newImageName,
+            'category' => $request->input('category'),
             'user_id' => auth()->user()->id
         ]);
 
@@ -111,6 +115,7 @@ class PostsController extends Controller
             ->update([
                 'title' => $request->input('title'),
                 'description' => $request->input('data'),
+                'category' => $request->input('category'),
                 'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
                 'user_id' => auth()->user()->id
             ]);

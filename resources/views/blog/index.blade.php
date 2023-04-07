@@ -27,6 +27,10 @@
     </div>
 @endif
 
+
+
+
+
 <div class="sm:grid grid-cols-2 w-4/5 m-auto gap-y-9 gap-x-5 auto-cols-max">
     @foreach ($posts as $post)
         <div class="w-full flex lg:max-w-full lg:flex mx-auto"> 

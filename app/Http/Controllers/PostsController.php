@@ -18,12 +18,24 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$posts = Post::latest()->paginate(6);
 
-        return view('blog.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->paginate(6));
+        $posts = Post::where([
+            ['title', '!=', NULL],
+            [function ($query) use ($request){
+                if (($term = $request->term)){
+                    $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
+
+        return view('blog.index', compact('posts'));
+
+        // return view('blog.index')
+        //     ->with('posts', Post::orderBy('updated_at', 'DESC')->paginate(6));
             //Post::orderBy('updated_at', 'DESC')->get()
     }
 
@@ -45,11 +57,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'image' => 'required|mimes:jpg,png,jpeg|max:5048'
-        // ]);
+        
         $request->validate([
           'title' => 'required',
           'data' => 'required',

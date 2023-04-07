@@ -36,11 +36,16 @@
                 <div class="h-48 lg:h-auto lg:w-56 flex-none  rounded-t lg:rounded-t-none lg:rounded-l text-center" style="background-image: url('{{ asset('images/' . $post->image_path) }}'); background-size: cover; background-repeat: no-repeat;background-position: center; resize: both;">
                 </div>
                 <div class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col leading-normal">
-                    <p class="text-gray-900 font-bold text-xl mb-2 truncate">
+                    <p class="text-gray-900 font-bold text-xl mb-2 truncate w-30">
                         {{ $post->title }}
                     </p>
+                    <div class="w-auto inline-block ">
+                        <p class="bg-blue-600 w-auto inline-block mb-3 text-white font-bold py-1 px-3 rounded-full">
+                            #{{ $post->category }}
+                        </p>
+                    </div>
                     <div class="mb-3">
-                        <p class="text-gray-500 mb-3 text-s mr-6">
+                        <p class="text-gray-500 mb-3 text-s mr-6 truncate">
                             By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
                         </p>
                     </div>

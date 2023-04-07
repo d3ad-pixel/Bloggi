@@ -80,9 +80,12 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {
-        return view('blog.show')
-            ->with('post', Post::where('slug', $slug)->first());
+    {   
+
+        $post = Post::where('slug', $slug)->first();
+        $relatedPosts = Post::inRandomOrder()->where('category', $post->category)->where('slug', '!=', $post->slug)->get();
+        return view('blog.show', compact('post', 'relatedPosts'));
+            // ->with('post', compact('post, relatedPosts'));
     }
 
     /**

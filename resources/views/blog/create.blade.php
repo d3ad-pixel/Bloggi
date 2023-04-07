@@ -28,8 +28,9 @@
             type="text"
             name="title"
             placeholder="Title..."
+            value="{{ old('title') }}"
             class="bg-transparent block border-b-2 w-full h-20 text-6xl outline-none mb-10">
-        <textarea id="myeditorinstance" class='z-0'name="data">Hello, World!</textarea>
+        <textarea id="myeditorinstance" class='z-0' name="data">{{ old('data') }}</textarea>
 
         <div class="bg-grey-lighter pt-15">
             <label class="w-60 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
@@ -46,7 +47,7 @@
         
 
         <label for="category">Choose a Category:</label>
-        <select id="category" name="category">
+        <select id="category" name="category" selected="{{ old('category') }}">
             <option value="personal-development">Personal Development</option>
             <option value="lifestyle">Lifestyle</option>
             <option value="technology">Technology</option>

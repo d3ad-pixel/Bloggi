@@ -9,7 +9,7 @@
     </div>
 </div>
 
-@if (session()->has('message'))
+@if (session()->has('message')) {{--   a message will be printed after create new blog or delete a blog,or edit a blog --}}
     <div class="w-4/5 m-auto mt-10 pl-2">
         <p class="w-2/6 mb-4 font-bold text-green-800 bg-green-300 rounded-2xl py-4 px-4">
             {{ session()->get('message') }}
@@ -17,7 +17,7 @@
     </div>
 @endif
 
-@if (Auth::check())
+@if (Auth::check()) {{--  if the user is authenticated he can create a new blog --}}
     <div class="pt-15 w-4/5 m-auto mb-15">
         <a 
             href="/blog/create"
@@ -27,7 +27,7 @@
     </div>
 @endif
 
-<div class="sm:grid grid-cols-2 w-4/5 m-auto gap-y-9 gap-x-5 auto-cols-max">
+<div class="sm:grid grid-cols-2 w-4/5 m-auto gap-y-9 gap-x-5 auto-cols-max"> {{--  list all the blogs --}} 
     @foreach ($posts as $post)
         <div class="w-full flex lg:max-w-full lg:flex mx-auto"> 
             <div class="h-48 lg:h-auto lg:w-56 flex-none  rounded-t lg:rounded-t-none lg:rounded-l text-center" style="background-image: url('{{ asset('images/' . $post->image_path) }}'); background-size: cover; background-repeat: no-repeat;background-position: center; resize: both;">
@@ -52,7 +52,7 @@
                     Read
                 </a>
 
-                @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id) {{--check if user is the one who created this blog and add edit and delete button --}}
+                @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id) {{--checks if the user is the one who created this blog ,we add edit and delete button --}}
                     <span class=" text-center mb-4">
                         <a 
                             href="/blog/{{ $post->slug }}/edit"
@@ -61,7 +61,7 @@
                         </a>
                     </span>
 
-                    <span class=" text-center mb-0">
+                    <span class=" text-center mb-0">{{--  delete a blog  --}}
                         <form 
                             action="/blog/{{ $post->slug }}"
                             method="POST">

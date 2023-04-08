@@ -1,3 +1,5 @@
+{{--for reading the blog --}}
+
 @extends('layouts.app')
 
 @section('content')

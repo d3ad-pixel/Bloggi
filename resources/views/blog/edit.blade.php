@@ -1,3 +1,4 @@
+{{-- Edit A BLOG  --}}
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +10,7 @@
     </div>
 </div>
 
-@if ($errors->any())
+@if ($errors->any()){{-- If any unfilled field  --}}
     <div class="w-4/5 m-auto">
         <ul>
             @foreach ($errors->all() as $error)
@@ -33,7 +34,7 @@
         <textarea id="myeditorinstance" name="data">{{ $post->description }}</textarea>
 
         <label for="category">Choose a Category:</label>
-        <select id="category" name="category">
+        <select id="category" name="category" value="old{{'category'}}">
             <option value="personal-development">Personal Development</option>
             <option value="lifestyle">Lifestyle</option>
             <option value="technology">Technology</option>

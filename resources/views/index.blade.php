@@ -1,3 +1,5 @@
+{{--  Home page  --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -31,7 +33,7 @@
     </div>
 
     <div class="sm:grid grid-cols-2 w-4/5 mx-auto gap-y-9 gap-x-5 auto-cols-max">
-        @foreach ($posts as $post)
+        @foreach ($posts as $post){{-- List all the blogs  --}}
             <div class="w-full flex lg:max-w-full lg:flex mx-auto"> 
                 <div class="h-48 lg:h-auto lg:w-56 flex-none  rounded-t lg:rounded-t-none lg:rounded-l text-center" style="background-image: url('{{ asset('images/' . $post->image_path) }}'); background-size: cover; background-repeat: no-repeat;background-position: center; resize: both;">
                 </div>
@@ -39,6 +41,11 @@
                     <p class="text-gray-900 font-bold text-xl mb-2 truncate">
                         {{ $post->title }}
                     </p>
+                    <div class="w-auto inline-block ">
+                    <p class="bg-blue-600 w-auto inline-block mb-3 text-white font-bold py-1 px-3 rounded-full">
+                        #{{ $post->category }}
+                    </p>
+                </div>
                     <div class="mb-3">
                         <p class="text-gray-500 mb-3 text-s mr-6">
                             By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}

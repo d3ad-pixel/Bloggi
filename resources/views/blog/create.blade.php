@@ -1,6 +1,8 @@
-@extends('layouts.app')
 
-@section('content')
+{{-- Create a BLOG   --}}
+@extends('layouts.app') {{-- for the nav and footer  --}}
+
+@section('content'){{--  this section is called content --}}
 <div class="w-4/5 m-auto text-left">
     <div class="py-15">
         <h1 class="text-6xl">
@@ -9,7 +11,7 @@
     </div>
 </div>
  
-@if ($errors->any())
+@if ($errors->any()) {{--  If there fields unfilled, I will print the error --}}
     <div class="w-4/5 m-auto">
         <ul>
             @foreach ($errors->all() as $error)
@@ -20,7 +22,7 @@
         </ul>
     </div>
 @endif
-
+{{--  creating the blog and filling all the fields  --}}
 <div class="w-4/5 m-auto pt-20">
     <form action="/blog" method="post" enctype="multipart/form-data">
         @csrf
@@ -28,10 +30,11 @@
             type="text"
             name="title"
             placeholder="Title..."
+            value="{{ old('title') }}"
             class="bg-transparent block border-b-2 w-full h-20 text-6xl outline-none mb-10">
-        <textarea id="myeditorinstance" class='z-0'name="data">Hello, World!</textarea>
+        <textarea id="myeditorinstance" class='z-0'name="data"  value="{{ old('data') }}">Hello, World!</textarea>{{-- id of the textearea refers to tinymce  --}}
 
-        <div class="bg-grey-lighter pt-15">
+        <div class="bg-grey-lighter pt-15"> {{-- upload a photo--}}
             <label class="w-60 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
                 <span class="text-base leading-normal">
                     Select a Thumbnail Image
@@ -44,9 +47,9 @@
         </div>
 
         
-
+        {{--  category --}}
         <label for="category">Choose a Category:</label>
-        <select id="category" name="category">
+        <select id="category" name="category"  value="{{ old('category') }}">
             <option value="personal-development">Personal Development</option>
             <option value="lifestyle">Lifestyle</option>
             <option value="technology">Technology</option>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -18,12 +19,24 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$posts = Post::latest()->paginate(6);
 
-        return view('blog.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->paginate(6));
+        $posts = Post::where([
+            ['title', '!=', NULL],
+            [function ($query) use ($request){
+                if (($term = $request->term)){
+                    $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
+
+        return view('blog.index', compact('posts'));
+
+        // return view('blog.index')
+        //     ->with('posts', Post::orderBy('updated_at', 'DESC')->paginate(6));
             //Post::orderBy('updated_at', 'DESC')->get()
     }
 
@@ -45,11 +58,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'image' => 'required|mimes:jpg,png,jpeg|max:5048'
-        // ]);
+        
         $request->validate([
           'title' => 'required',
           'data' => 'required',
@@ -80,9 +89,12 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {
-        return view('blog.show')
-            ->with('post', Post::where('slug', $slug)->first());
+    {   
+
+        $post = Post::where('slug', $slug)->first();
+        $relatedPosts = Post::inRandomOrder()->where('category', $post->category)->where('slug', '!=', $post->slug)->get();
+        return view('blog.show', compact('post', 'relatedPosts'));
+            // ->with('post', compact('post, relatedPosts'));
     }
 
     /**

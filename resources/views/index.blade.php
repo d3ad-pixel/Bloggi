@@ -32,10 +32,10 @@
         </p>
     </div>
 
-    <div class="sm:grid grid-cols-2 w-4/5 mx-auto gap-y-9 gap-x-5 auto-cols-max">
+    <div class="sm:grid grid-cols-2 w-4/5 m-auto gap-y-9 gap-x-8 auto-cols-max">
         @foreach ($posts as $post){{-- List all the blogs  --}}
-            <div class="w-full flex lg:max-w-full lg:flex mx-auto"> 
-                <div class="h-48 lg:h-auto lg:w-56 flex-none  rounded-t lg:rounded-t-none lg:rounded-l text-center" style="background-image: url('{{ asset('images/' . $post->image_path) }}'); background-size: cover; background-repeat: no-repeat;background-position: center; resize: both;">
+            <div class="w-full sm:mb-10  mx-auto"> 
+                <div class="h-60 lg:w-auto flex-none  rounded-t lg:rounded-t-none lg:rounded-l text-center" style="background-image: url('{{ asset('images/' . $post->image_path) }}'); background-size: cover; background-repeat: no-repeat;background-position: center; resize: both;">
                 </div>
                 <div class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col leading-normal">
                     <p class="text-gray-900 font-bold text-xl mb-2 truncate w-30">

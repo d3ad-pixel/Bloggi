@@ -19,7 +19,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request)//when i come to blog page i takes posts from my database , and here we pagenate ,every 6 posts in each page
     {
 
         $posts = Post::where([
@@ -45,7 +45,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()  //after press on create w new blog
     {
         return view('blog.create');
     }
@@ -56,7 +56,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //after fill the blog and press submit, it checks the validatory of the request and creates a post
     {
         
         $request->validate([
@@ -88,7 +88,7 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($slug)//for reading a blog , and also i will list the related blogs that are in same category
     {   
 
         $post = Post::where('slug', $slug)->first();
@@ -103,7 +103,7 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($slug) //if i want to edit a blog
     {
         return view('blog.edit')
             ->with('post', Post::where('slug', $slug)->first());
@@ -116,7 +116,7 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $slug)// after edit the blog i press submit post
     {
         $request->validate([
             'title' => 'required',
@@ -142,7 +142,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($slug)// if i press delete 
     {
         $post = Post::where('slug', $slug);
         $post->delete();

@@ -15,6 +15,8 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <link rel="icon" type="image/x-icon" href="/images/blog.ico">
+
     <x-head.tinymce-config/>
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">

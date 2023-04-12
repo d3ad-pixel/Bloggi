@@ -48,7 +48,7 @@
                     </div>
                     <div class="mb-3">
                         <p class="text-gray-500 mb-3 text-s mr-6 truncate">
-                            By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
+                            By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Updated on {{ date('jS M Y', strtotime($post->created_at)) }}
                         </p>
                     </div>
 

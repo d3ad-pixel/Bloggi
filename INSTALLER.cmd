@@ -12,11 +12,11 @@ call composer install
 :: Create database and import the data
 
 set /p username=Enter MySQL username:
-set /p password=Enter MySQL password:
+:: set /p password=Enter MySQL password:
 
 echo Creating database and importing the data...
-mysql -u %username% -p %password% -e "CREATE DATABASE IF NOT EXISTS laravelblog;"
-mysql -u %username% -p %password% laravelblog < ../laravelblog.sql
+mysql -u %username% -p -e "CREATE DATABASE IF NOT EXISTS laravelblog;"
+mysql -u %username% -p laravelblog < ../laravelblog.sql
 
 :: Copy .env.example and set application key
 echo Copying .env.example and setting application key...
